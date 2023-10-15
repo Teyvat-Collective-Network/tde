@@ -1,0 +1,16 @@
+{
+    "name": "@teyvat-collective-network/toml-discord-embeds",
+    "version": "1.0.0",
+    "module": "index.ts",
+    "devDependencies": {
+        "bun-types": "latest"
+    },
+    "peerDependencies": {
+        "typescript": "^5.0.0"
+    },
+    "type": "module",
+    "dependencies": {
+        "@iarna/toml": "^2.2.5",
+        "discord.js": "^14.13.0"
+    }
+}
