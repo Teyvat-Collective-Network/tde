@@ -1,5 +1,3 @@
-import { MessageMentionOptions } from "discord.js";
-
 export type Sources = Record<string, (args: any) => any> | undefined;
 
 function inject(options: any, sources: Sources, key: string) {
@@ -221,7 +219,7 @@ function validateBooleanOrStringArray(key: string, object: any): boolean | strin
     return object.map((x, i) => validateString(`${key} element ${i + 1}`, x, true, Infinity));
 }
 
-export function validateMentions(key: string, mentions: any): MessageMentionOptions | undefined {
+export function validateMentions(key: string, mentions: any): { parse?: ("roles" | "users" | "everyone")[]; roles?: string[]; users?: string[] } | undefined {
     if (mentions === undefined) return;
 
     if (typeof mentions !== "object") throw err(key, "expected an object");

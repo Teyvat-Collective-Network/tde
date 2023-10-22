@@ -1,9 +1,30 @@
 import toml from "@iarna/toml";
-import { WebhookMessageCreateOptions } from "discord.js";
 import { Sources, validateColor, validateEmbeds, validateFiles, validateMentions, validateProfile, validateString } from "./validation.ts";
 
 const TDE = {
-    parse(source: string, sources?: Sources): WebhookMessageCreateOptions {
+    parse(
+        source: string,
+        sources?: Sources,
+    ): {
+        content?: string;
+        username?: string;
+        avatarURL?: string;
+        allowedMentions?: { parse?: ("roles" | "users" | "everyone")[]; roles?: string[]; users?: string[] };
+        embeds?: {
+            title?: string;
+            description?: string;
+            url?: string;
+            timestamp?: string;
+            color?: number;
+            footer?: { text: string; icon_url?: string };
+            image?: { url: string };
+            thumbnail?: { url: string };
+            video?: { url: string };
+            author?: { name: string; url?: string; icon_url?: string };
+            fields?: { name: string; value: string; inline?: boolean }[];
+        }[];
+        files?: { name: string; attachment: string }[];
+    } {
         const object = toml.parse(source);
 
         const rootColor = validateColor("root color", object.color);
