@@ -1,9 +1,8 @@
-import toml from "@iarna/toml";
 import { Sources, validateColor, validateEmbeds, validateFiles, validateMentions, validateProfile, validateString } from "./validation.ts";
 
 const TDE = {
-    parse(
-        source: string,
+    convert(
+        object: any,
         sources?: Sources,
     ): {
         content?: string;
@@ -25,8 +24,6 @@ const TDE = {
         }[];
         files?: { name: string; attachment: string }[];
     } {
-        const object = toml.parse(source);
-
         const rootColor = validateColor("root color", object.color);
         const content = validateString("content", object.content, false, 2000);
         const profile = validateProfile("profile", object.profile);
