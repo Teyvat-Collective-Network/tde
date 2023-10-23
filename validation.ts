@@ -152,7 +152,6 @@ type Embed = {
     footer?: Footer;
     image?: string;
     thumbnail?: string;
-    video?: string;
     author?: Author;
     fields?: Field[];
 };
@@ -172,7 +171,6 @@ function validateEmbed(sources: Sources, key: string, embed: any): Embed[] {
         footer: validateFooter(`${key} footer`, e.footer),
         image: validateURL(`${key} image URL`, e.image, false),
         thumbnail: validateURL(`${key} thumbnail URL`, e.thumbnail, false),
-        video: validateURL(`${key} video URL`, e.video, false),
         author: validateAuthor(`${key} author`, e.author),
         fields: validateFields(sources, `${key} fields`, e.field),
     }));

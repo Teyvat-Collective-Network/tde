@@ -18,7 +18,6 @@ const TDE = {
             footer?: { text: string; icon_url?: string };
             image?: { url: string };
             thumbnail?: { url: string };
-            video?: { url: string };
             author?: { name: string; url?: string; icon_url?: string };
             fields?: { name: string; value: string; inline?: boolean }[];
         }[];
@@ -42,7 +41,6 @@ const TDE = {
                 footer: x.footer && { text: x.footer.text, icon_url: x.footer.icon },
                 image: x.image === undefined ? undefined : { url: x.image },
                 thumbnail: x.thumbnail === undefined ? undefined : { url: x.thumbnail },
-                video: x.video === undefined ? undefined : { url: x.video },
                 timestamp: x.timestamp && x.timestamp.toISOString() + "Z",
                 color: x.color ?? rootColor,
             })),
