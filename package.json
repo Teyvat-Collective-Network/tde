@@ -1,6 +1,6 @@
 {
     "name": "@teyvat-collective-network/toml-discord-embeds",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "module": "index.ts",
     "devDependencies": {
         "bun-types": "latest"

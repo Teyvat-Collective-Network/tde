@@ -5,10 +5,10 @@ const TDE = {
         object: any,
         sources?: Sources,
     ): {
-        content?: string;
+        content: string | null;
         username?: string;
         avatarURL?: string;
-        allowedMentions?: { parse?: ("roles" | "users" | "everyone")[]; roles?: string[]; users?: string[] };
+        allowedMentions: { parse?: ("roles" | "users" | "everyone")[]; roles?: string[]; users?: string[] } | null;
         embeds?: {
             title?: string;
             description?: string;
@@ -31,20 +31,21 @@ const TDE = {
         const mentions = validateMentions("mentions", object.mentions);
 
         return {
-            content,
+            content: content || null,
             username: profile?.username,
             avatarURL: profile?.avatarURL,
-            allowedMentions: mentions,
-            embeds: embeds?.map((x) => ({
-                ...x,
-                author: x.author && { name: x.author.name, url: x.author.url, icon_url: x.author.icon },
-                footer: x.footer && { text: x.footer.text, icon_url: x.footer.icon },
-                image: x.image === undefined ? undefined : { url: x.image },
-                thumbnail: x.thumbnail === undefined ? undefined : { url: x.thumbnail },
-                timestamp: x.timestamp && x.timestamp.toISOString() + "Z",
-                color: x.color ?? rootColor,
-            })),
-            files: files?.map((x) => ({ name: x.name, attachment: x.url })),
+            allowedMentions: mentions || null,
+            embeds:
+                embeds?.map((x) => ({
+                    ...x,
+                    author: x.author && { name: x.author.name, url: x.author.url, icon_url: x.author.icon },
+                    footer: x.footer && { text: x.footer.text, icon_url: x.footer.icon },
+                    image: x.image === undefined ? undefined : { url: x.image },
+                    thumbnail: x.thumbnail === undefined ? undefined : { url: x.thumbnail },
+                    timestamp: x.timestamp && x.timestamp.toISOString() + "Z",
+                    color: x.color ?? rootColor,
+                })) ?? [],
+            files: files?.map((x) => ({ name: x.name, attachment: x.url })) ?? [],
         };
     },
 };
